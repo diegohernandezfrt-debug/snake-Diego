@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://dax4tta061au6"]
+
+[ext_resource type="PackedScene" uid="uid://cwqgmi6kktmm4" path="res://Ecenas/Snake/Snake.tscn" id="1_0hx2w"]
+[ext_resource type="Texture2D" uid="uid://orusnbr0tsia" path="res://assets/wall-horizontal.png" id="2_541ho"]
+[ext_resource type="Script" path="res://walls.gd" id="2_sd636"]
+[ext_resource type="Texture2D" uid="uid://dojvgb0nhacmn" path="res://assets/wall-vertical.png" id="3_hvpmc"]
+[ext_resource type="PackedScene" uid="uid://d0gpgpc5lhchk" path="res://Ecenas/Food/food_spawner.tscn" id="5_3wu8l"]
+[ext_resource type="PackedScene" uid="uid://d1hmrrq1t6wlk" path="res://Ecenas/Food/food.tscn" id="6_5gpph"]
+[ext_resource type="Texture2D" uid="uid://bha3huvd8bw2t" path="res://assets/food/Comida.png" id="7_8s6kd"]
+[ext_resource type="PackedScene" uid="uid://ccjbw2cw75yya" path="res://Ecenas/ui_layer.tscn" id="7_jtpct"]
+[ext_resource type="Texture2D" uid="uid://cjbejhl8qol50" path="res://assets/food/Rana.png" id="8_7wt8l"]
+[ext_resource type="Texture2D" uid="uid://b66wljht5gaa4" path="res://assets/food/Conejo.png" id="9_pcrk7"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Snake" parent="." node_paths=PackedStringArray("walls") instance=ExtResource("1_0hx2w")]
+walls = NodePath("../Walls")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Walls" type="Node" parent="."]
+script = ExtResource("2_sd636")
+
+[node name="BottomWall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(0, 480)
+scale = Vector2(1.933, 1)
+texture = ExtResource("2_541ho")
+
+[node name="TopWall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(0, -480)
+scale = Vector2(1.933, 1)
+texture = ExtResource("2_541ho")
+
+[node name="RightWall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(896, 0)
+scale = Vector2(1, 1.533)
+texture = ExtResource("3_hvpmc")
+
+[node name="LeftWall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(-896, 0)
+scale = Vector2(1, 1.533)
+texture = ExtResource("3_hvpmc")
+
+[node name="FoodSpawner" parent="." node_paths=PackedStringArray("walls") instance=ExtResource("5_3wu8l")]
+walls = NodePath("../Walls")
+food_scene = ExtResource("6_5gpph")
+food_normal = ExtResource("7_8s6kd")
+food_gold = ExtResource("8_7wt8l")
+food_speed = ExtResource("9_pcrk7")
+
+[node name="UILayer" parent="." instance=ExtResource("7_jtpct")]

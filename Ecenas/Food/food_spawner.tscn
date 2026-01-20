@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0gpgpc5lhchk"]
+
+[ext_resource type="Script" path="res://Ecenas/Food/food_spawner.gd" id="1_xh7hy"]
+
+[node name="FoodSpawner" type="Node" groups=["food_spawner"]]
+script = ExtResource("1_xh7hy")

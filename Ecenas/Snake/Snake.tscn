@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwqgmi6kktmm4"]
+
+[ext_resource type="Script" path="res://Ecenas/Snake/Snake.gd" id="1_d5ypd"]
+[ext_resource type="AudioStream" uid="uid://tedha0vtmlr3" path="res://assets/Rata.mp3" id="2_w4hq6"]
+[ext_resource type="AudioStream" uid="uid://boblqqh6wim13" path="res://assets/snake.mp3" id="3_7sq1p"]
+[ext_resource type="AudioStream" uid="uid://w10qyt7pmngm" path="res://assets/Rana.mp3" id="3_l0dfn"]
+[ext_resource type="AudioStream" uid="uid://cudao8htum8md" path="res://assets/8-bit-game-over.mp3" id="4_ptmwc"]
+[ext_resource type="AudioStream" uid="uid://bo001vb4w7knq" path="res://assets/MusicLoop.OGG" id="5_c1gm1"]
+
+[node name="Snake" type="Node2D"]
+script = ExtResource("1_d5ypd")
+
+[node name="SnakeParts" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="EatSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_w4hq6")
+volume_db = -6.0
+
+[node name="EatSoundGold" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_l0dfn")
+volume_db = -6.0
+
+[node name="SnakeAtak" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7sq1p")
+volume_db = -10.0
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ptmwc")
+volume_db = -4.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c1gm1")
+volume_db = -18.0
+autoplay = true
+
+[node name="SpeedTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
